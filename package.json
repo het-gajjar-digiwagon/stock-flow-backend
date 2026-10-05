@@ -1,0 +1,35 @@
+{
+  "name": "stock-flow-backend",
+  "version": "1.0.0",
+  "description": "Node.js &amp; MySQL Upskilling Project",
+  "homepage": "https://github.com/het-gajjar-digiwagon/stock-flow-backend#readme",
+  "bugs": {
+    "url": "https://github.com/het-gajjar-digiwagon/stock-flow-backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/het-gajjar-digiwagon/stock-flow-backend.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "./src/server.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.12.0",
+    "globals": "^17.13.0",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.9.9"
+  }
+}

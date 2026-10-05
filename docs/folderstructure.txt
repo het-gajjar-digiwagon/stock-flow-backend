@@ -1,0 +1,21 @@
+stock-flow-backend/
+├── src/
+│ ├── app.js # builds the Express app: middleware + routes, no listen()
+│ ├── server.js # starts the server, graceful shutdown
+│ ├── config/ # env loading, database config, constants
+│ ├── routes/ # URL → controller mapping only
+│ ├── controllers/ # read request, call a service, send the response
+│ ├── services/ # business rules, transactions, scoping
+│ ├── models/ # Sequelize models and associations
+│ ├── middlewares/ # auth, role guard, validation, error handler
+│ ├── validators/ # Joi schemas, one file per resource
+│ ├── utils/ # AppError, response helper, pagination helper
+│ └── jobs/ # scheduled jobs (Phase 5)
+├── migrations/
+├── seeders/
+├── tests/
+├── docs/ # ER diagram, perf notes, Postman collection
+├── .env.example
+├── DECISIONS.md
+├── LEARNING_LOG.md
+└── README.md
