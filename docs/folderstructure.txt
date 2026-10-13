@@ -9,7 +9,7 @@ stock-flow-backend/
 │ ├── models/ # Sequelize models and associations
 │ ├── middlewares/ # auth, role guard, validation, error handler
 │ ├── validators/ # Joi schemas, one file per resource
-│ ├── utils/ # AppError, response helper, pagination helper
+│ ├── utils/ # response helper, pagination helper
 │ └── jobs/ # scheduled jobs (Phase 5)
 ├── migrations/
 ├── seeders/
