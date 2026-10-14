@@ -9,7 +9,6 @@ const login = async (req, res, next) => {
     return sendSuccess(
       res,
       { message: 'Login successful', token: result.token },
-      undefined,
       201
     );
   } catch (error) {

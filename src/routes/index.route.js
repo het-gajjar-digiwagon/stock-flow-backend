@@ -10,6 +10,6 @@ const router = express.Router();
 router.use('/health', healthRouter);
 router.use('/auth', authRouter);
 router.use('/users', userRouter);
-router.get('/me', meRouter);
+router.use('/me', meRouter);
 router.use('/roles', rolesRouter);
 export default router;

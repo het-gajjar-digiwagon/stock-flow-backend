@@ -10,8 +10,8 @@ export async function up(queryInterface) {
       password: bcrypt.hashSync('Het@8794', salt),
       role_id: 1,
       is_active: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      created_at: new Date(),
+      updated_at: new Date(),
     },
   ]);
 }

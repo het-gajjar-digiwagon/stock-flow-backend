@@ -6,10 +6,9 @@ const validateRequest = (schema) => (req, res, next) => {
     allowUnknown: true,
   });
   if (error) {
+    //This is the structure of validation error obj
     const details = error.details.map((detail) => ({
       msg: detail.message,
-      path: detail.path.join('.'),
-      location: 'body',
       value: detail.context?.value,
     }));
 
@@ -17,7 +16,7 @@ const validateRequest = (schema) => (req, res, next) => {
       res,
       {
         code: 400,
-        message: 'Validation failed',
+        msg: 'Validation failed',
         details: details,
       },
       400

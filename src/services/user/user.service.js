@@ -7,6 +7,7 @@ const throwServiceError = (message, status) => {
   throw error;
 };
 
+//User List
 const listUsers = async () =>
   db.User.findAll({
     attributes: [
@@ -15,11 +16,12 @@ const listUsers = async () =>
       'email',
       'role_id',
       'is_active',
-      'createdAt',
-      'updatedAt',
+      'created_at',
+      'updated_at',
     ],
   });
 
+//Create new user
 const createUser = async ({ name, email, password, role_id }) => {
   const existingUser = await db.User.findOne({ where: { email } });
   if (existingUser) {
@@ -35,6 +37,7 @@ const createUser = async ({ name, email, password, role_id }) => {
   });
 };
 
+//Get User
 const getUserById = async (userId) => {
   const user = await db.User.findByPk(userId, {
     attributes: [
@@ -43,8 +46,8 @@ const getUserById = async (userId) => {
       'email',
       'role_id',
       'is_active',
-      'createdAt',
-      'updatedAt',
+      'created_at',
+      'updated_at',
     ],
   });
   if (!user) {
@@ -53,10 +56,8 @@ const getUserById = async (userId) => {
   return user;
 };
 
-const updateUserService = async (
-  userId,
-  { name, email, role_id, password }
-) => {
+//Update user
+const updateUserService = async (userId, { name, email, role_id }) => {
   const user = await db.User.findByPk(userId);
   if (!user) {
     throwServiceError('User not found', 404);
@@ -68,14 +69,20 @@ const updateUserService = async (
     }
   }
   const updates = { name, email, role_id };
-  if (password) {
-    updates.password = await bcrypt.hash(password, 10);
-  }
 
   await user.update(updates);
 };
 
-const deactivateUserService = async (userId) => {
+//Deactivate User
+const deactivateUserService = async (userId, requesterId) => {
+  if (
+    requesterId !== undefined &&
+    requesterId !== null &&
+    String(userId) === String(requesterId)
+  ) {
+    throwServiceError('You cannot deactivate your own account.', 400);
+  }
+
   const user = await db.User.findByPk(userId);
   if (!user) {
     throwServiceError('User not found', 404);
@@ -83,12 +90,27 @@ const deactivateUserService = async (userId) => {
   await user.update({ is_active: false });
 };
 
+//Activate user
 const activateUserService = async (userId) => {
   const user = await db.User.findByPk(userId);
   if (!user) {
     throwServiceError('User not found', 404);
   }
   await user.update({ is_active: true });
+};
+
+//Reset password using old password
+const resetPasswordService = async (userId, { old_password, new_password }) => {
+  const user = await db.User.findByPk(userId);
+  if (!user) {
+    throwServiceError('User not found', 404);
+  }
+  const isMatch = await bcrypt.compare(old_password, user.password);
+  if (!isMatch) {
+    throwServiceError('Current password is incorrect', 400);
+  }
+  const hashedPassword = await bcrypt.hash(new_password, 10);
+  await user.update({ password: hashedPassword });
 };
 
 export {
@@ -98,4 +120,5 @@ export {
   updateUserService,
   deactivateUserService,
   activateUserService,
+  resetPasswordService,
 };

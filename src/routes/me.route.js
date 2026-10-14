@@ -4,5 +4,5 @@ import myProfile from '../controllers/me/me.controller.js';
 
 const router = express.Router();
 
-router.get('/me', authUser, myProfile);
+router.get('/', authUser, myProfile);
 export default router;

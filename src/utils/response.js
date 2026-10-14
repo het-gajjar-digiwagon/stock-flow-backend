@@ -1,4 +1,4 @@
-export function sendSuccess(res, data = {}, meta, status = 200) {
+export function sendSuccess(res, data = {}, status = 200, meta) {
   const body = {
     success: true,
     data,

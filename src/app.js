@@ -15,10 +15,8 @@ app.use((req, __res, next) => {
 
 app.use('/api/v1', indexRouter);
 
-app.use((req, _res, next) => {
-  const error = new Error(`Cannot ${req.method} ${req.path}`);
-  error.status = 404;
-  next(error);
+app.use('/api', (_req, res) => {
+  res.status(404).send({ message: 'Route Not Found' });
 });
 
 app.use(errorHandler);
