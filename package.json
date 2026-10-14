@@ -1,0 +1,47 @@
+{
+  "name": "stock-flow-backend",
+  "version": "1.0.0",
+  "description": "Node.js &amp; MySQL Upskilling Project",
+  "homepage": "https://github.com/het-gajjar-digiwagon/stock-flow-backend#readme",
+  "bugs": {
+    "url": "https://github.com/het-gajjar-digiwagon/stock-flow-backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/het-gajjar-digiwagon/stock-flow-backend.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "./src/server.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "drop-table": "npx sequelize-cli db:migrate:undo:all",
+    "migrate": "npx sequelize-cli db:migrate",
+    "migrate-undo-all": "npx sequelize-cli db:migrate:undo:all",
+    "seeder": "npx sequelize-cli db:seed:all",
+    "seeder-undo": "npx sequelize-cli db:seed:undo",
+    "seeder-undo-all": "npx sequelize-cli db:seed:undo:all"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^18.0.6",
+    "express": "^5.2.1",
+    "joi": "^18.2.9",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.24.5",
+    "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.12.0",
+    "globals": "^17.13.0",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.9.9",
+    "sequelize-cli": "^6.6.5"
+  }
+}
